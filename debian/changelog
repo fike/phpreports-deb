@@ -1,0 +1,54 @@
+phpreports (0.4.9-2) unstable; urgency=low
+
+  * Remove php4 dependecies packages.
+  * Updated watch file to version 3.
+
+ -- Fernando Ike de Oliveira <fike@midstorm.org>  Wed, 11 Jul 2007 17:02:25 -0300
+
+phpreports (0.4.9-1) unstable; urgency=low
+
+  * New upstream release
+  * Fix bug (Closes: #432243)
+
+ -- Fernando Ike de Oliveira <fike@midstorm.org>  Sat, 02 Jun 2007 12:13:28 -0300
+
+phpreports (0.4.6-1) unstable; urgency=low
+
+  * Depend on php4 | php5 (Closes: #343390)
+  * Orphan package.
+
+ -- Matthew Palmer <mpalmer@debian.org>  Sun, 18 Jun 2006 17:35:08 +1000
+
+phpreports (0.3.6-2) unstable; urgency=low
+
+  * Modify the internal PHPReports install path to reflect reality.  Thanks
+    to Patrice W. for pointing out the problem to me.
+  * Work around and remove some extraneous newlines that were causing
+    occasional problems.
+
+ -- Matthew Palmer <mpalmer@debian.org>  Fri, 25 Feb 2005 10:50:07 +1100
+
+phpreports (0.3.6-1) unstable; urgency=low
+
+  * New upstream release (Closes: #289204).
+
+ -- Matthew Palmer <mpalmer@debian.org>  Wed, 19 Jan 2005 15:15:35 +1100
+
+phpreports (0.3.4-1) unstable; urgency=low
+
+  * New upstream release.  Functionality unchanged.
+
+ -- Matthew Palmer <mpalmer@debian.org>  Thu, 21 Oct 2004 16:30:28 +1000
+
+phpreports (0.3.2-2) unstable; urgency=low
+
+  * Changed the uniqname patch to provide a mechanism for end-users to set
+    the PHPReport classname instead of making it internal.
+
+ -- Matthew Palmer <mpalmer@debian.org>  Fri,  1 Oct 2004 21:55:31 +1000
+
+phpreports (0.3.2-1) unstable; urgency=low
+
+  * Initial release.  Closes: #213520.
+
+ -- Matthew Palmer <mpalmer@debian.org>  Thu, 23 Sep 2004 22:37:04 +1000

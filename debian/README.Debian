@@ -1,0 +1,13 @@
+PHPReports is still relatively early-stage software.  It does a pretty good
+job of producing HTML reports, but there's still a bit more hair in both the
+code and the interfaces than I would like.
+
+Fairly comprehensive documentation is available from
+http://sf.net/project/showfiles.php?group_id=55870&package_id=116673
+
+Current gotchas:
+
+* Some of PHPReports' more advanced features requires
+  /usr/share/php/phpreports to be web-accessible via some URL.  If you want to
+  use those features, you'll have to create a web alias and then set
+  PHPREPORTSURL to the alias.

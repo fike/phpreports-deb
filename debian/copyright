@@ -1,0 +1,16 @@
+This phpreports package was debianized by Matthew Palmer
+<mpalmer@debian.org> in September 2004.
+
+It was downloaded from http://www.sf.net/projects/phpreports/
+
+Upstream Author: Eustaquio Rangel de Oliveira Jr, <eustaquiorangel@yahoo.com>
+	Portions copyright Matthew Palmer <mpalmer@baileyroberts.com.au>
+
+Licence: from the PHPReports manual: "It's under the GPL, you don't need to
+pay.  Just follow the GPL rules and everybody will be happy."
+
+On Debian systems, a copy of the GPL can be found at
+/usr/share/common-licenses/GPL.
+
+
+

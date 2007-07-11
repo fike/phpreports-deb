@@ -1,0 +1,19 @@
+Source: phpreports
+Section: web
+Priority: optional
+Maintainer: Fernando Ike de Oliveira <fike@midstorm.org>
+Build-Depends: debhelper (>= 5.0.0)
+Standards-Version: 3.7.2
+
+Package: phpreports
+Architecture: all
+Depends: php5, php5-xsl
+Recommends: php-pear
+Description: XML-based report generator for PHP
+ A common business need is the ability to generate reports dynamically from
+ an SQL database and present the information in a tabular fashion. 
+ PHPReports takes an XML definition of the general layout of the report and a
+ query, and produces a finished report in one of several formats.
+ .
+ PHPReports is both a useful report generation package, as well as an
+ excellent demonstration of the power of XML/XSLT.
