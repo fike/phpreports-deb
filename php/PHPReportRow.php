@@ -10,7 +10,7 @@
 			Add a column in the row
 		*/
 		function addCol(&$oCol_) {
-			array_push($this->_aCols,&$oCol_);
+			array_push($this->_aCols,$oCol_);
 		}
 
 		function &getCols() {

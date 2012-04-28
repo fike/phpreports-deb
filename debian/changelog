@@ -1,3 +1,12 @@
+phpreports (0.4.9-2.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Update phpreports to PHP 5.4: fix "Call-time pass-by-reference" errors.
+    Affected files are: ./database/db_oracle.php, database/db_odbc.phpi and
+    php/PHPReportRow.php (Closes: #658874)
+
+ -- Mònica Ramírez Arceda <monica@debian.org>  Sat, 28 Apr 2012 11:48:23 +0200
+
 phpreports (0.4.9-2) unstable; urgency=low
 
   * Remove php4 dependecies packages.
