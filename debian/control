@@ -2,12 +2,15 @@ Source: phpreports
 Section: web
 Priority: optional
 Maintainer: Fernando Ike de Oliveira <fike@midstorm.org>
-Build-Depends: debhelper (>= 5.0.0)
-Standards-Version: 3.7.2
+Build-Depends: debhelper (>= 9.0.0)
+Standards-Version: 3.9.4
+Homepage: http://phpreports.sourceforge.net/
+Vcs-Git: git://github.com/fike/phpreports-deb.git
+Vcs-Browser: http://github.com/fike/phpreports-deb.git
 
 Package: phpreports
 Architecture: all
-Depends: php5, php5-xsl
+Depends: php5, php5-xsl, ${misc:Depends}
 Recommends: php-pear
 Description: XML-based report generator for PHP
  A common business need is the ability to generate reports dynamically from

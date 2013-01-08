@@ -1,0 +1,48 @@
+Update phpreports to PHP 5.4: fix "Call-time pass-by-reference" errors.
+    Affected files are: ./database/db_oracle.php, database/db_odbc.phpi and
+    php/PHPReportRow.php (Closes: #658874)
+Index: phpreports-0.5.0/database/db_odbc.php
+===================================================================
+--- phpreports-0.5.0.orig/database/db_odbc.php	2010-01-22 18:24:29.000000000 -0200
++++ phpreports-0.5.0/database/db_odbc.php	2013-01-08 19:39:19.787219791 -0200
+@@ -70,11 +70,11 @@
+ 			$rs_assoc = Array();
+ 			if(PHP_VERSION>"4.1"){
+ 				if($rownumber<0)
+-					odbc_fetch_into($result,&$rs);
++					odbc_fetch_into($result,$rs);
+ 				else
+-					odbc_fetch_into($result, &$rs, $rownumber);
++					odbc_fetch_into($result, $rs, $rownumber);
+ 			}else
+-				odbc_fetch_into($result, $rownumber, &$rs);
++				odbc_fetch_into($result, $rownumber, $rs);
+ 				
+ 			foreach($rs as $key => $value)
+ 				$rs_assoc[odbc_field_name($result, $key+1)] = $value;
+Index: phpreports-0.5.0/database/db_oracle.php
+===================================================================
+--- phpreports-0.5.0.orig/database/db_oracle.php	2010-01-22 18:24:29.000000000 -0200
++++ phpreports-0.5.0/database/db_oracle.php	2013-01-08 19:38:19.847218820 -0200
+@@ -28,7 +28,7 @@
+ 
+ 		function db_fetch($oStmt) {
+ 			$aArray = Array();
+-			if(!@ociFetchInto($oStmt,&$aArray,OCI_ASSOC+OCI_RETURN_NULLS))
++			if(!@ociFetchInto($oStmt,$aArray,OCI_ASSOC+OCI_RETURN_NULLS))
+ 				return false;
+ 			return $aArray;
+ 		}
+Index: phpreports-0.5.0/php/PHPReportRow.php
+===================================================================
+--- phpreports-0.5.0.orig/php/PHPReportRow.php	2010-01-22 18:24:29.000000000 -0200
++++ phpreports-0.5.0/php/PHPReportRow.php	2013-01-08 19:39:52.591220323 -0200
+@@ -10,7 +10,7 @@
+ 			Add a column in the row
+ 		*/
+ 		function addCol(&$oCol_) {
+-			array_push($this->_aCols,&$oCol_);
++			array_push($this->_aCols,$oCol_);
+ 		}
+ 
+ 		function &getCols() {

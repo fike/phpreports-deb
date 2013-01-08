@@ -2,24 +2,33 @@
 # Sample debian/rules that uses debhelper.
 # GNU copyright 1997 to 1999 by Joey Hess.
 
+%:
+	dh $@
+
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
 DESTDIR=$(CURDIR)/debian/phpreports
 
-build:
-	## Nothing to do ##
-
 clean:
 	dh_testdir
 	dh_testroot
-
 	dh_clean
+
+build: $(QUILT_STAMPFN)
+	dh_testdir
+	dh_auto_test
+
+build-arch: 
+	build
+
+build-indep: 
+	build
 
 install:
 	dh_testdir
 	dh_testroot
-	dh_clean -k
+	dh_prep
 	dh_installdirs
 
 	cp -a PHP* database output php xslt $(DESTDIR)/usr/share/php/phpreports/
@@ -40,9 +49,6 @@ binary-indep: install
 	dh_md5sums
 	dh_builddeb
 
-# Build architecture-dependent files here.
-binary-arch:
-	# Nothing to do here, move along
 
 binary: binary-indep binary-arch
 .PHONY: build clean binary-indep binary-arch binary install configure
