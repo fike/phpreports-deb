@@ -76,6 +76,10 @@
 			<xsl:text>&#9;$oCol</xsl:text><xsl:value-of select="count(preceding::*[name()='COL'])+1"/><xsl:text>->setOnMouseOut(&quot;</xsl:text><xsl:value-of select="@ONMOUSEOUT"/><xsl:text>&quot;);&#10;</xsl:text>
 		</xsl:if>
 
+		<xsl:if test="string-length(@FIXEDWIDTH)>0">
+			<xsl:text>&#9;$oCol</xsl:text><xsl:value-of select="count(preceding::*[name()='COL'])+1"/><xsl:text>->setFixedWidth(&quot;</xsl:text><xsl:value-of select="@FIXEDWIDTH"/><xsl:text>&quot;);&#10;</xsl:text>
+		</xsl:if>
+
 		<!-- CELLCLASS EXPRESSION //-->
 		<xsl:if test="string-length(@CELLCLASSEXPRESSION)>0">
 			<xsl:text>&#9;$oCol</xsl:text><xsl:value-of select="count(preceding::*[name()='COL'])+1"/><xsl:text>->setCellClassExpr(</xsl:text>

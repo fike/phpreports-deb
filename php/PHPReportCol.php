@@ -32,32 +32,34 @@
 		var $_sOnMouseOver;
 		var $_sOnMouseOut;
 		var $_oError;
+		var $_iFixedWidth;
 
 		/**
 			Constructor
 		*/
 		function PHPReportCol() {
-			$this->_aParms			= Array();	
-			$this->_sType			= "UNDEFINED";
-			$this->_sExpr			= null;
-			$this->_oGroup			= null;
-			$this->_sNform			= null;
-			$this->_iNformX		= -1;
-			$this->_sDecSep		= ",";
-			$this->_sThoSep		= ".";
-			$this->_bSuppr			= false;
-			$this->_oCurVal		= null; 
-			$this->_oOldVal		= null;
-			$this->_sEvenClass	= null;
-			$this->_sOddClass		= null;
-			$this->_oLink			= null;
-			$this->_oBookmark		= null;
-			$this->_oImg			= null;
-			$this->_sClassExpr	= null;
-			$this->_sOnClick		= "";
-			$this->_sOnMouseOver	= "";
-			$this->_sOnMouseOut	= "";
-			$this->_oError			= new PHPReportsErrorTr();
+			$this->_aParms				= Array();	
+			$this->_sType				= "UNDEFINED";
+			$this->_sExpr				= null;
+			$this->_oGroup				= null;
+			$this->_sNform				= null;
+			$this->_iNformX			= -1;
+			$this->_sDecSep			= ",";
+			$this->_sThoSep			= ".";
+			$this->_bSuppr				= false;
+			$this->_oCurVal			= null; 
+			$this->_oOldVal			= null;
+			$this->_sEvenClass		= null;
+			$this->_sOddClass			= null;
+			$this->_oLink				= null;
+			$this->_oBookmark			= null;
+			$this->_oImg				= null;
+			$this->_sClassExpr		= null;
+			$this->_sOnClick			= "";
+			$this->_sOnMouseOver		= "";
+			$this->_sOnMouseOut		= "";
+			$this->_oError				= new PHPReportsErrorTr();
+			$this->_iFixedWidth		= -1;
 			$this->makeTranslationArray();
 		}
 
@@ -76,6 +78,7 @@
 			$this->_aTrans["ONCLICK"]			="OC";
 			$this->_aTrans["ONMOUSEOVER"]		="MO";
 			$this->_aTrans["ONMOUSEOUT"]		="MT";
+			$this->_aTrans["FIXEDWIDTH"]		="FW";
 		}
 
 		/**
@@ -501,6 +504,15 @@
 
 		function setOnMouseOut($sEvent_){
 			$this->_sOnMouseOut=$sEvent_;
+		}
+
+		// fixed font size
+		function setFixedWidth($iSize_=12){
+			$this->_iFixedWidth=$iSize_;
+		}
+
+		function getFixedWidth(){
+			return $this->_iFixedWidth;
 		}
 	}
 ?>

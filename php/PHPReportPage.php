@@ -275,7 +275,7 @@
 			$sParm  = (strlen($sTitle)>0?" TITLE=\"".$oRepo->getTitle()."\"":"");
 			$sParm .= (strlen($sColor)>0?" BGCOLOR=\"".$oRepo->getBackgroundColor()."\"":"");
 			$sParm .= (strlen($sImage)>0?" BACKGROUND=\"".$oRepo->getBackgroundImage()."\"":"");
-			$sParm .= (strlen($sBCSS)>0?" BOOKMARKS_CSS=\"".$oRepo->getBookmarksCSS()."\"":"");
+			$sParm .= (strlen($sBCSS)>0 ?" BOOKMARKS_CSS=\"".$oRepo->getBookmarksCSS()."\"":"");
 			$this->output("<?xml version=\"1.0\" encoding=\"ISO-8859-1\" standalone=\"no\"?>\n");
 			$this->output("<RP$sParm>\n");
 

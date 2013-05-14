@@ -129,15 +129,6 @@
 					$sFileContents = str_replace("<REPLACE_WITH_PARAMETERS/>",$sParms,$sFileContents);
 			}
 
-			// check if there is some document info
-			if($oDocument){
-				$sDocument = null;
-				if(is_object($oDocument))	$sDocument = $oDocument->write();
-				if(is_string($oDocument))	$sDocument = $oDocument;
-				if($sDocument)
-					$sFileContents = str_replace("<REPLACE_WITH_DOCUMENT_INFO/>",$sDocument,$sFileContents);
-			}
-
 			// if no groups info was specified, follow the default behaviour: all the fields from the query,
 			// with no group break
 			if(!$oGroups){
@@ -168,6 +159,7 @@
 				// insert the column names
 				$sNames				= "";
 				$sReplacedNames	= "";
+				$sTotals				= "";
 
 				$iColNum = PHPREportsDBI::db_colnum($this->_oQuery);
 				for($i=1; $i<=$iColNum; $i++){
@@ -175,6 +167,11 @@
 					$sExtra				= isNumericType(PHPReportsDBI::db_columnType($this->_oQuery,$i))?" ALIGN=\"RIGHT\"":"";
 					$sReplacedNames  .= "<COL CELLCLASS=\"bold\"$sExtra>".ucfirst(strtolower(str_replace("_"," ",$sName)))."</COL>";
 					$sNames			  .= "<COL TYPE=\"FIELD\"$sExtra>$sName</COL>";
+					
+					if(isNumericType(PHPReportsDBI::db_columnType($this->_oQuery,$i)))
+						$sTotals		  .= "\t\t\t<COL TYPE=\"EXPRESSION\" ALIGN=\"RIGHT\">\$this->getSum(\"$sName\");</COL>\n";
+					else
+						$sTotals		  .= "\t\t\t<COL></COL>\n";
 				}
 
 				// build the group info
@@ -182,12 +179,25 @@
 				$sGroup			= str_replace("<REPLACE_WITH_REPLACED_COLUMN_NAMES/>",$sReplacedNames,$sGroup);
 				$sGroup			= str_replace("<REPLACE_WITH_COLUMN_NAMES/>",$sNames,$sGroup);
 				$sFileContents = str_replace("<REPLACE_WITH_GROUP_INFO/>",$sGroup,$sFileContents);
+
+				// if no document info is set, make one
+				if(!$oDocument)
+					$oDocument = "<DOCUMENT>\n\t<FOOTER>\n\t\t<ROW>\n$sTotals\t\t</ROW>\t</FOOTER>\n</DOCUMENT>";
 			}else{
 				$sGroups = null;
 				if(is_object($oGroups))	$sGroups	= $oGroups->write();
 				if(is_string($oGroups))	$sGroups = $oGroups;
 				if($sGroups)
 					$sFileContents = str_replace("<REPLACE_WITH_GROUP_INFO/>",$sGroups,$sFileContents);
+			}
+
+			// check if there is some document info
+			if($oDocument){
+				$sDocument = null;
+				if(is_object($oDocument))	$sDocument = $oDocument->write();
+				if(is_string($oDocument))	$sDocument = $oDocument;
+				if($sDocument)
+					$sFileContents = str_replace("<REPLACE_WITH_DOCUMENT_INFO/>",$sDocument,$sFileContents);
 			}
 
 			// replace the report title
@@ -789,6 +799,15 @@
 		function setDatabaseConnection(&$_oCon){
 			$this->_oCon =& $_oCon;
 		}		
+
+		/******************************************************************************
+		*																										*
+		*	Set a valid query	made before																* 
+		*																										*
+		******************************************************************************/
+		function setQuery($oQuery_){
+			$this->_oQuery=$oQuery_;
+		}
 
 		/******************************************************************************
 		*																										*
